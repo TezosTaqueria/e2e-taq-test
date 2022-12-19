@@ -11,4 +11,4 @@ npm t
 
 more tests can be added
 
-This should get around the "what machine is what version of what runnng on" problem.
+This should help with solving the "You tried what version of what running on what?" problem.
