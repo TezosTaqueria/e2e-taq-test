@@ -3,14 +3,34 @@ jest.setTimeout(30000);
 
 describe('E2E Testing for taqueria CLI,', () => {
 
-	test('Verify that taq --help gives the help menu for a non-initialized project', async () => {
+	test('init will create the correct directory structure', async () => {
+		const { spawn, cleanup, exists } = await prepareEnvironment();
+		const { waitForText } = await spawn('taq', 'init temp');
+		await waitForText("Project taq'ified!");
+		await exists('./artifacts');
+		await exists('./contracts');
+		await cleanup();
+	});
+
+	test('install plugin will only require a package.json file with {}', async () => {
+		const { spawn, cleanup, execute, readFile, writeFile } = await prepareEnvironment();
+		const { waitForFinish } = await spawn('taq', 'init auto-test-npm-success');
+		await writeFile('./auto-test-npm-success/package.json', '{}');
+		const {} = await execute('taq', 'install @taqueria/plugin-ligo');
+		await waitForFinish();
+		const content = await readFile('./auto-test-npm-success/package.json');
+		expect(content).toContain('"name": "auto-test-npm-success"');
+		await cleanup();
+	});
+	
+	test('taq --help will provide help menu for a non-initialized project', async () => {
 		const { spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', '--help');
 		await waitForText('taq scaffold');
 		await cleanup();
 	});
 
-	test('Verify that taq --help gives the help menu for an initialized project', async () => {
+	test('taq --help will provide help menu for an initialized project', async () => {
 		const { spawn, execute, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -20,7 +40,7 @@ describe('E2E Testing for taqueria CLI,', () => {
 		await cleanup();
 	});
 
-	test('Verify that taq reports a version', async () => {
+	test('taq --version reports a version number of the expected format', async () => {
 		const { execute, cleanup } = await prepareEnvironment();
 		const { code, stdout } = await execute('taq', '--version');
 		expect(code).toBe(0);
@@ -30,7 +50,7 @@ describe('E2E Testing for taqueria CLI,', () => {
 		await cleanup();
 	});
 
-	test('Verify that build reports build information about the version', async () => {
+	test('taq --build will report build information about the version', async () => {
 		const { execute, cleanup } = await prepareEnvironment();
 		const { code, stdout } = await execute('taq', '--build');
 		expect(code).toBe(0);
@@ -38,7 +58,7 @@ describe('E2E Testing for taqueria CLI,', () => {
 		await cleanup();
 	});
 
-	test('Verify that trying a command that is not available returns an error', async () => {
+	test('calling a task that is not available returns an error', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -47,7 +67,7 @@ describe('E2E Testing for taqueria CLI,', () => {
 		await cleanup();
 	});
 
-	test('Verify that trying to install a package that does not exist returns an error', async () => {
+	test('install will error if package does not exist', async () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");

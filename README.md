@@ -16,8 +16,15 @@ taq --version
 2. npm i ts-jest
 3. npm install
 
-to run: 
+## run
+
+to run all: 
 npm t
+
+to run specific suites:
+npm t "smoke-e2e-tests.spec.ts"
+npm t "ligo-plugin-e2e-test.spec.ts"
+npm t "taquito-plugin-e2e-test.spec.ts"
 
 ## Make a note of your node --version
     Check requirement against the Docs : https://taqueria.io/docs/getting-started/installation/
