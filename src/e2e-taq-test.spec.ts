@@ -55,4 +55,28 @@ describe('E2E Testing for taqueria CLI,', () => {
 		expect(code).toBe(1);
 		await cleanup();
 	});
+
+	// DEMONSTRATION OF https://github.com/ecadlabs/taqueria/issues/1635
+    test('bug 1635 - taquito plugin will only give contextual help for deploy in stderr', async () => {
+        const { execute, spawn, cleanup } = await prepareEnvironment();
+        const { waitForText } = await spawn('taq', 'init test-project');
+        await waitForText("Project taq'ified!");
+        const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito', './test-project');
+        expect(stdout).toContain('Plugin installed successfully');
+
+        //provide --help parameter 
+        const { stdout: stdout1 } = await execute('taq', 'deploy --help', './test-project');
+
+        //displays default help, not contextual help
+        expect(stdout1).toContain('taq [command]');
+
+        //fail to provide enough parameters 
+        const { stderr: stderr1 } = await execute('taq', 'deploy', './test-project');
+
+        //invokes stderr to display contextual help
+        expect(stderr1).toContain('Deploy a smart contract to a particular environment');
+        expect(stderr1).toContain('Not enough non-option arguments: got 0, need at least 1');
+
+        await cleanup();
+    });
 });
