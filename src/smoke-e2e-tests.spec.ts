@@ -1,7 +1,11 @@
 import { prepareEnvironment } from '@gmrchk/cli-testing-library';
-jest.setTimeout(30000);
+import { exec as exec1 } from 'child_process';
+import util from 'util';
+const exec = util.promisify(exec1);
 
-describe('E2E Testing for taqueria CLI,', () => {
+describe('E2E Smoke Test for Taqueria CLI,', () => {
+
+	jest.setTimeout(30000);
 
 	test('init will create the correct directory structure', async () => {
 		const { spawn, cleanup, exists } = await prepareEnvironment();
@@ -99,4 +103,37 @@ describe('E2E Testing for taqueria CLI,', () => {
 
         await cleanup();
     });
+
+	test.only('contract types plugin will compile a contract and generate types', async () => {
+		const { spawn, cleanup, execute, readFile, writeFile, exists, ls } = await prepareEnvironment();
+		const { waitForText } = await spawn('taq', 'init test-project');
+		await waitForText("Project taq'ified!");
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+		expect(stdout).toContain('Plugin installed successfully');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
+		expect(stdout1).toContain('Plugin installed successfully');
+
+		const increment_jsligo_file = (await (await exec('cat src/test-data/increment.jsligo')).stdout);
+		await writeFile('./test-project/contracts/increment.jsligo', increment_jsligo_file);
+		await exists('./contracts/increment.jsligo');
+
+		const { stdout: stdout4, stderr } = await execute('taq', 'compile increment.jsligo', './test-project');
+		console.log('stdout4', stdout4);
+		console.log('stderr', stderr);
+
+		const { stdout: stdout3 } = await execute('taq', 'generate types types', './test-project');
+		expect(stdout3).toEqual(expect.arrayContaining(["generateTypes { typescriptDir: 'types' }"]));
+		expect(stdout3).toEqual(expect.arrayContaining(["Contracts Found:"]));
+		expect(stdout3).toEqual(expect.arrayContaining(["- {{base}}/test-project/artifacts/increment.tz"]));
+		expect(stdout3).toEqual(expect.arrayContaining(["Processing /increment.tz..."]));
+		expect(stdout3).toEqual(expect.arrayContaining(["increment.tz: Types generated"]));
+
+		expect(await ls('./test-project/')).toContain('types');
+		expect(await ls('./test-project/types')).toContain('increment.code.ts');
+		expect(await ls('./test-project/types')).toContain('increment.types.ts');
+		expect(await ls('./test-project/types')).toContain('type-aliases.ts');
+		expect(await ls('./test-project/types')).toContain('type-utils.ts');
+
+		await cleanup();
+	});
 });

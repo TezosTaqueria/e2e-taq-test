@@ -127,7 +127,7 @@ describe('E2E Testing for ligo plugin', () => {
 		await writeFile('./test-project/contracts/hello-tacos.mligo', mligo_file);
 
 		const { stdout: stdout2 } = await execute('taq', 'add-contract hello-tacos.mligo', './test-project');
-        expect(stdout2).toEqual(expect.arrayContaining(['│ Name              │ Source File       │ Last Known Hash │']));
+        expect(stdout2).toEqual(expect.arrayContaining(['│ No registered contracts found │']));
 
 		await cleanup();
 	});

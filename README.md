@@ -23,7 +23,8 @@ taq --version
 
 1. clone https://github.com/ecadlabs/e2e-taq-test.git
 2. npm i ts-jest
-3. npm install
+3. npm i @gmrchk/cli-testing-library
+4. npm install
 
 ## run
 
