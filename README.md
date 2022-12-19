@@ -2,6 +2,13 @@
 A portable repo for rapid e2e test of Taqueria
 
 ## Need Taqueria
+### Release
+```
+curl -LO https://taqueria.io/get/linux/taq
+chmod +x taq1
+sudo mv taq /usr/local/bin
+```
+### Pre-release
 ```
 wget https://github.com/ecadlabs/taqueria/releases/download/<RELEASE VERSION>/taq-linux
 chmod +x taq-linux
@@ -10,9 +17,9 @@ sudo mv taq /usr/local/bin
 
 taq --version
 ```
-## set up the e2e-taq-test tool
+## Set up the e2e-taq-test tool
 
-1. clone
+1. clone https://github.com/ecadlabs/e2e-taq-test.git
 2. npm i ts-jest
 3. npm install
 

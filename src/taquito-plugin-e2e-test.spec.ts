@@ -167,7 +167,7 @@ describe('E2E testing for taquito plugin', () => {
 		await cleanup();
 	});
 
-	test('taquito plugin can only once instantiate an account on a network once', async () => {
+	test('taquito plugin can only once instantiate an account on a network', async () => {
 		const { execute, spawn, cleanup, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
