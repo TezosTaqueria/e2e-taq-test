@@ -123,15 +123,15 @@ describe('E2E testing for taquito plugin', () => {
 		const increment_tz_file = await (await exec('cat src/test-data/increment.tz')).stdout;
 		await writeFile('./test-project/artifacts/increment.tz', increment_tz_file);
 
-		const { stdout: stdout2 } = await execute(
+		const { stdout: stdout2, stderr } = await execute(
 			'taq',
 			'deploy hello-tacos.tz --storage anyContract.storage.tz -e testing',
 			'./test-project',
 		);
+		console.log(stderr);
 		expect(stdout2).toEqual(expect.arrayContaining(
 			['│ Contract       │ Address                              │ Alias       │ Balance In Mutez │ Destination                    │'],
 		));
-
 
 		await cleanup();
 	});
@@ -233,11 +233,13 @@ describe('E2E testing for taquito plugin', () => {
 			expect.arrayContaining(['│ Account Alias │ Account Address                      │ Mutez Funded │']),
 		);
 
-		const { stdout: stdout4 } = await execute(
+		const { stdout: stdout4, stderr } = await execute(
 			'taq',
 			'transfer tz3RobfdmYYQaiF5W343wdSiFhwWF2xUfjEy --mutez 100000 --sender bob -e testing',
 			'./test-project',
 		);
+		console.log(stderr);
+
 		expect(stdout4).toEqual(
 			expect.arrayContaining([
 				'│ N/A            │ tz3RobfdmYYQaiF5W343wdSiFhwWF2xUfjEy │ Unit      │ default    │ 100000         │ https://ghostnet.ecadinfra.com │',
