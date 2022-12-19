@@ -1,7 +1,9 @@
 # e2e-taq-test
 A portable repo for rapid e2e test of Taqueria
 
-clone and npm install
+1. clone
+2. npm i ts-jest
+3. npm install
 
 to run:
 
