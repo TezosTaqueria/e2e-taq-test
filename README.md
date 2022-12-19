@@ -1,5 +1,5 @@
 # e2e-taq-test
-A portable repo for rapid e2e test of Taqueria
+A portable repo for rapid user aaceptance e2e test of Taqueria
 
 ## Need Taqueria
 ### Release
@@ -7,6 +7,8 @@ A portable repo for rapid e2e test of Taqueria
 curl -LO https://taqueria.io/get/linux/taq
 chmod +x taq1
 sudo mv taq /usr/local/bin
+
+taq --version
 ```
 ### Pre-release
 ```
