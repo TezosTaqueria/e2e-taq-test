@@ -20,7 +20,7 @@ to run:
 npm t
 
 ## Make a note of your node --version
-    Check requirement against [Docs](https://taqueria.io/docs/getting-started/installation/)
+    Check requirement against the Docs : https://taqueria.io/docs/getting-started/installation/
 ## More tests can be added
 ---
 This should help with solving the "You tried what version of what running on what?" problem.
