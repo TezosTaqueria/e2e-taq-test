@@ -44,7 +44,6 @@ describe('E2E testing for taquito plugin', () => {
 			'deploy hello-tacos.tz --storage anyContract.storage.tz -e testing',
 			'./test-project',
 		);
-		console.log(stderr);
 		expect(stdout2).toEqual(expect.arrayContaining(
 			['│ Contract       │ Address                              │ Alias       │ Balance In Mutez │ Destination                    │'],
 		));
@@ -154,7 +153,6 @@ describe('E2E testing for taquito plugin', () => {
 			'transfer tz3RobfdmYYQaiF5W343wdSiFhwWF2xUfjEy --mutez 100000 --sender bob -e testing',
 			'./test-project',
 		);
-		console.log(stderr);
 
 		expect(stdout4).toEqual(
 			expect.arrayContaining([

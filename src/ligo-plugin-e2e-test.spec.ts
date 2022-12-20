@@ -116,8 +116,6 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 		await waitForText("Project taq'ified!");
 	
         const { stdout, stderr } = await execute('taq', 'install @taqueria/plugin-ligo@next', './test-project');
-        console.log(stdout);
-        console.log(stderr);
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const artifacts_list_before = await ls('./test-project/artifacts');
@@ -150,7 +148,7 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 	});
 
 	//add-contract invalid-contract.mligo appears to be failing
-	test.skip('ligo plugin add-contract will error if contract is invalid', async () => {
+	test('ligo plugin add-contract will error if contract is invalid', async () => {
 		const { execute, cleanup, spawn, writeFile, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -164,7 +162,7 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 
 		const { stdout: stdout2 } = await execute('taq', 'add-contract invalid-contract.mligo', './test-project');
 		expect(stdout2).toEqual(
-			expect.arrayContaining(['│ invalid-contract.mligo │ invalid-contract.mligo │ 2c7affa2        │']),
+			expect.arrayContaining(['│ No registered contracts found │']),
 		);
 
 		const { stdout: stdout3, stderr: stderr2 } = await execute(

@@ -51,6 +51,9 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		expect(stdout[0].toString().trim()).toMatch(
 			/^((v?(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)|(dev-[\w-]+)|main?|(\d+)-[\w-]+)$/,
 		);
+		console.log('Taq Version: '+ stdout);
+		const { stdout: stdout1 } = await execute('node', '--version');
+		console.log('Node Version: '+ stdout);
 		await cleanup();
 	});
 
@@ -104,7 +107,7 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
         await cleanup();
     });
 
-	test.only('contract types plugin will compile a contract and generate types', async () => {
+	test('contract types plugin will compile a contract and generate types', async () => {
 		const { spawn, cleanup, execute, readFile, writeFile, exists, ls } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -117,9 +120,7 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		await writeFile('./test-project/contracts/increment.jsligo', increment_jsligo_file);
 		await exists('./contracts/increment.jsligo');
 
-		const { stdout: stdout4, stderr } = await execute('taq', 'compile increment.jsligo', './test-project');
-		console.log('stdout4', stdout4);
-		console.log('stderr', stderr);
+		const { } = await execute('taq', 'compile increment.jsligo', './test-project');
 
 		const { stdout: stdout3 } = await execute('taq', 'generate types types', './test-project');
 		expect(stdout3).toEqual(expect.arrayContaining(["generateTypes { typescriptDir: 'types' }"]));
