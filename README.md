@@ -34,18 +34,13 @@ npm i @gmrchk/cli-testing-library
 npm install
 ```
 ### 3. Run Tests
-
-use jest --watch
-
-or from terminal caommand line, 
-to run all: 
+```
+jest --watch
+```
+or from terminal
+```
 npm t
-
-to run specific suites:
-npm t "smoke-e2e-tests.spec.ts"
-npm t "ligo-plugin-e2e-test.spec.ts"
-npm t "taquito-plugin-e2e-test.spec.ts"
-
+```
 ### Make a note of your node --version
     Check requirement against the Docs : https://taqueria.io/docs/getting-started/installation/
 
