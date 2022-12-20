@@ -116,8 +116,6 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 		await waitForText("Project taq'ified!");
 	
         const { stdout, stderr } = await execute('taq', 'install @taqueria/plugin-ligo@next', './test-project');
-        console.log(stdout);
-        console.log(stderr);
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const artifacts_list_before = await ls('./test-project/artifacts');

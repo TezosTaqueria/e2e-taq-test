@@ -117,9 +117,7 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		await writeFile('./test-project/contracts/increment.jsligo', increment_jsligo_file);
 		await exists('./contracts/increment.jsligo');
 
-		const { stdout: stdout4, stderr } = await execute('taq', 'compile increment.jsligo', './test-project');
-		console.log('stdout4', stdout4);
-		console.log('stderr', stderr);
+		const { } = await execute('taq', 'compile increment.jsligo', './test-project');
 
 		const { stdout: stdout3 } = await execute('taq', 'generate types types', './test-project');
 		expect(stdout3).toEqual(expect.arrayContaining(["generateTypes { typescriptDir: 'types' }"]));
