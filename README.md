@@ -28,11 +28,11 @@ npm run build-all
 
 ### 2. Set up the e2e-taq-test tool
 
-1. clone https://github.com/ecadlabs/e2e-taq-test.git
-2. npm i ts-jest
-3. npm i @gmrchk/cli-testing-library
-4. npm install
-
+```clone https://github.com/ecadlabs/e2e-taq-test.git
+npm i ts-jest
+npm i @gmrchk/cli-testing-library
+npm install
+```
 ### 3. Run Tests
 
 use jest --watch
