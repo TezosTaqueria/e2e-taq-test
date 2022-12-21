@@ -22,9 +22,7 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		expect(contracts_list).toContain('hello-tacos.mligo');
 
 		const { waitForText: waitForText2, wait, writeText, pressKey, waitForFinish } = await spawn(
-			'taq',
-			'generate-project-metadata',
-			'./test-project',
+			'taq', 'generate-project-metadata', './test-project'
 		);
 
 		await wait(1000);
@@ -100,9 +98,7 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		expect(contracts_list).toContain('hello-tacos.mligo');
 
 		const { waitForText, wait, writeText, pressKey, waitForFinish } = await spawn(
-			'taq',
-			'generate-metadata hello-tacos.mligo',
-			'./test-project',
+			'taq', 'generate-metadata hello-tacos.mligo', './test-project'
 		);
 
 		await wait(1000);
@@ -149,5 +145,7 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		});
 
 		await cleanup();
+    
 	});
 });
+
