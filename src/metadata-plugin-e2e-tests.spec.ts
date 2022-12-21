@@ -7,7 +7,7 @@ import { prepareEnvironment } from '@gmrchk/cli-testing-library';
 
 describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 
-	jest.setTimeout(120000);
+	jest.setTimeout(90000);
 
 	test('generate-project-metadata will add a metadata entry to the config.json', async () => {
 		const { execute, spawn, cleanup, ls, writeFile, readFile } = await prepareEnvironment();
@@ -58,10 +58,10 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 			'authors': [
 				'KentBeck',
 				'MartinFowler',
-				'ErichGamma'
+				'ErichGamma',
 			],
 			'homepage': 'http://taqueria.io',
-			'license': '007'
+			'license': '007',
 		});
 
 		await cleanup();
@@ -140,10 +140,12 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 			'homepage': 'http://taqueria.io',
 			'license': '007',
 			'interfaces': [
-				'TZIP-016'
-			]
+				'TZIP-016',
+			],
 		});
 
 		await cleanup();
+    
 	});
-}); 
+});
+
