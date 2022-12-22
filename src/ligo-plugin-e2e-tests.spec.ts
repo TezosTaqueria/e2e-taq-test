@@ -148,6 +148,7 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 	});
 
 	//add-contract invalid-contract.mligo appears to be failing
+	// is add-contract to be deprecated?
 	test.skip('ligo plugin add-contract will error if contract is invalid', async () => {
 		const { execute, cleanup, spawn, writeFile, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');

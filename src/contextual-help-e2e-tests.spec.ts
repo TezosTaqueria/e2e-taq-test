@@ -17,8 +17,8 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	// blocked by https://github.com/ecadlabs/taqueria/issues/1635
-	test.skip('1635 - ligo plugin compile will show contextual help', async () => {
+	// bug - https://github.com/ecadlabs/taqueria/issues/1635
+	test('1635 - ligo plugin compile will show contextual help', async () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -33,8 +33,8 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	// blocked by https://github.com/ecadlabs/taqueria/issues/1635
-	test.skip('1635 - ligo plugin compile-ligo will show contextual help', async () => {
+	// bug - https://github.com/ecadlabs/taqueria/issues/1635
+	test('1635 - ligo plugin compile-ligo will show contextual help', async () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -53,8 +53,8 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-    // blocked by https://github.com/ecadlabs/taqueria/issues/1635
-	test.skip('1635-taquito plugin will give contextual help for deploy', async () => {
+    // bug - https://github.com/ecadlabs/taqueria/issues/1635
+	test('1635-taquito plugin will give contextual help for deploy', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -67,8 +67,8 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	// blocked by https://github.com/ecadlabs/taqueria/issues/1635
-	test.skip('1635-taquito plugin will give contextual help for originate', async () => {
+	// bug - https://github.com/ecadlabs/taqueria/issues/1635
+	test('1635-taquito plugin will give contextual help for originate', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -81,8 +81,8 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	// blocked by https://github.com/ecadlabs/taqueria/issues/1635
-	test.skip('1635-taquito plugin will give contextual help for transfer task', async () => {
+	// bug - https://github.com/ecadlabs/taqueria/issues/1635
+	test('1635-taquito plugin will give contextual help for transfer task', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -95,8 +95,8 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	// blocked by https://github.com/ecadlabs/taqueria/issues/1635
-	test.skip('1635-taquito plugin will give contextual help for transfer', async () => {
+	// bug - https://github.com/ecadlabs/taqueria/issues/1635
+	test('1635-taquito plugin will give contextual help for transfer', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -109,8 +109,8 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	// blocked by https://github.com/ecadlabs/taqueria/issues/1635
-	test.skip('1635-taquito plugin will give contextual help for fund', async () => {
+	// bug - https://github.com/ecadlabs/taqueria/issues/1635
+	test('1635-taquito plugin will give contextual help for fund', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -123,8 +123,8 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	// blocked by https://github.com/ecadlabs/taqueria/issues/1635
-	test.skip('1635-taquito plugin will give contextual help for instantiate-account', async () => {
+	// bug - https://github.com/ecadlabs/taqueria/issues/1635
+	test('1635-taquito plugin will give contextual help for instantiate-account', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");

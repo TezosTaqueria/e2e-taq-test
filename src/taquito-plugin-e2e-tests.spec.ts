@@ -5,9 +5,10 @@ const exec = util.promisify(exec1);
 
 import { prepareEnvironment } from '@gmrchk/cli-testing-library';
 
-describe('E2E testing for taquito plugin', () => {
+describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 
-    jest.setTimeout(300000);
+    jest.setTimeout(90000);
+	const slow = test.skip;
 
 	test('taquito plugin will display help', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
@@ -131,7 +132,7 @@ describe('E2E testing for taquito plugin', () => {
 		await cleanup();
 	});
 
-	test('taquito plugin can send from one instantiated account to another', async () => {
+	slow('taquito plugin can send from one instantiated account to another', async () => {
 		const { execute, spawn, cleanup, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
