@@ -139,7 +139,7 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
         await cleanup();
     });
 
-	test.only('contract types plugin will compile a contract and generate types', async () => {
+	test('contract types plugin will compile a contract and generate types', async () => {
 		const { spawn, cleanup, execute, readFile, writeFile, exists, ls } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
