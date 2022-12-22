@@ -27,19 +27,54 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		await cleanup();
 	});
 	
-	test('taq --help will provide help menu for a non-initialized project', async () => {
-		const { spawn, cleanup } = await prepareEnvironment();
-		const { waitForText } = await spawn('taq', '--help');
-		await waitForText('taq scaffold');
+	test('taq --help will get help for a non-initialized project', async () => {
+		const { execute, cleanup } = await prepareEnvironment();
+		const { stdout } = await execute('taq', '--help');
+		expect(stdout).toEqual(expect.arrayContaining(["taq opt-in                                Opt-in to sharing anonymous usage an"]));
+		console.log(stdout);
 		await cleanup();
 	});
 
-	test('taq --help will provide help menu for an initialized project', async () => {
+	test('taq --help will get help for a project initialized with --debug', async () => {
+		const { spawn, execute, cleanup } = await prepareEnvironment();
+		const { waitForText } = await spawn('taq', 'init test-project --debug');
+		await waitForText("Project taq'ified!");
+		const { stdout, code } = await execute('taq', '--help -p test-project');
+		console.log('project initialized with --debug \n'+ stdout);
+		expect(stdout).toEqual(expect.arrayContaining(["taq install <pluginName>                  Install a plugin"]));
+		expect(code).toBe(0);
+		await cleanup();
+	});
+
+	test('taq --help will get help for an initialized project', async () => {
 		const { spawn, execute, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
 		const { stdout, code } = await execute('taq', '--help -p test-project');
-		expect(stdout).toContain('taq [command]');
+		console.log('project initialized NPM \n'+ stdout);
+		expect(stdout).toEqual(expect.arrayContaining(["taq opt-in                                Opt-in to sharing anonymous usage an"]));
+		expect(code).toBe(0);
+		await cleanup();
+	});
+
+	test('taq --help will get help for a project initialized with --workflow ligo --debug', async () => {
+		const { spawn, execute, cleanup } = await prepareEnvironment();
+		const { waitForText } = await spawn('taq', 'init test-project --workflow ligo --debug');
+		await waitForText("Project taq'ified!");
+		const { stdout, code } = await execute('taq', '--help -p test-project');
+		console.log('project initialized with --workflow ligo --debug \n\n'+ stdout);
+		expect(stdout).toEqual(expect.arrayContaining(["taq install <pluginName>                  Install a plugin"]));
+		expect(code).toBe(0);
+		await cleanup();
+	});
+
+	test('taq --help will get help for a project initialized with --workflow ligo', async () => {
+		const { spawn, execute, cleanup } = await prepareEnvironment();
+		const { waitForText } = await spawn('taq', 'init test-project --workflow ligo');
+		await waitForText("Project taq'ified!");
+		const { stdout, code } = await execute('taq', '--help -p test-project');
+		console.log('project initialized with --workflow ligo --debug \n\n'+ stdout);
+		expect(stdout).toEqual(expect.arrayContaining(["taq opt-in                                Opt-in to sharing anonymous usage an"]));
 		expect(code).toBe(0);
 		await cleanup();
 	});

@@ -9,7 +9,7 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 
 	jest.setTimeout(90000);
 
-	test('generate-project-metadata will add a metadata entry to the config.json', async () => {
+	test('1652 - generate-project-metadata will add a metadata entry to the config.json', async () => {
 		const { execute, spawn, cleanup, ls, writeFile, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -67,7 +67,7 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	test('generate-metadata will error if no contract name provided', async () => {
+	test('1652 - generate-metadata will error if no contract name provided', async () => {
 		const { execute, spawn, cleanup, ls, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -85,7 +85,7 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	test('generate-metadata will create a metadata json file in the artifacts directory', async () => {
+	test('1652 - generate-metadata will create a metadata json file in the artifacts directory', async () => {
 		const { execute, spawn, cleanup, ls, writeFile, readFile } = await prepareEnvironment();
 		const { stdout } = await execute('taq', 'init test-project');
 		expect(stdout).toContain("Project taq'ified!");
