@@ -8,7 +8,7 @@ import { prepareEnvironment } from '@gmrchk/cli-testing-library';
 describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 
     jest.setTimeout(90000);
-	const slow = test.skip;
+	//const slow = test.skip;
 
 	test('taquito plugin will display help', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
