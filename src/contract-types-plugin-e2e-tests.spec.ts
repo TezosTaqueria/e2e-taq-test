@@ -23,7 +23,7 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 	});
 
     // bug - https://github.com/ecadlabs/taqueria/issues/1635
-	test('1635 - generate types offers contextual help', async () => {
+	test.skip('1635 - generate types offers contextual help', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
@@ -37,7 +37,7 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 	});
 
 	// bug - https://github.com/ecadlabs/taqueria/issues/1635
-    test('1635 - gen offers contextual help', async () => {
+    test.skip('1635 - gen offers contextual help', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");

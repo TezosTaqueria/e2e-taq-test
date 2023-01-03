@@ -31,7 +31,6 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		const { execute, cleanup } = await prepareEnvironment();
 		const { stdout } = await execute('taq', '--help');
 		expect(stdout).toEqual(expect.arrayContaining(["taq opt-in                                Opt-in to sharing anonymous usage an"]));
-		console.log(stdout);
 		await cleanup();
 	});
 
@@ -40,7 +39,6 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		const { waitForText } = await spawn('taq', 'init test-project --debug');
 		await waitForText("Project taq'ified!");
 		const { stdout, code } = await execute('taq', '--help -p test-project');
-		console.log('project initialized with --debug \n'+ stdout);
 		expect(stdout).toEqual(expect.arrayContaining(["taq install <pluginName>                  Install a plugin"]));
 		expect(code).toBe(0);
 		await cleanup();
@@ -51,7 +49,6 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
 		const { stdout, code } = await execute('taq', '--help -p test-project');
-		console.log('project initialized NPM \n'+ stdout);
 		expect(stdout).toEqual(expect.arrayContaining(["taq opt-in                                Opt-in to sharing anonymous usage an"]));
 		expect(code).toBe(0);
 		await cleanup();
@@ -62,7 +59,6 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		const { waitForText } = await spawn('taq', 'init test-project --workflow ligo --debug');
 		await waitForText("Project taq'ified!");
 		const { stdout, code } = await execute('taq', '--help -p test-project');
-		console.log('project initialized with --workflow ligo --debug \n\n'+ stdout);
 		expect(stdout).toEqual(expect.arrayContaining(["taq install <pluginName>                  Install a plugin"]));
 		expect(code).toBe(0);
 		await cleanup();
@@ -73,7 +69,6 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		const { waitForText } = await spawn('taq', 'init test-project --workflow ligo');
 		await waitForText("Project taq'ified!");
 		const { stdout, code } = await execute('taq', '--help -p test-project');
-		console.log('project initialized with --workflow ligo --debug \n\n'+ stdout);
 		expect(stdout).toEqual(expect.arrayContaining(["taq opt-in                                Opt-in to sharing anonymous usage an"]));
 		expect(code).toBe(0);
 		await cleanup();
