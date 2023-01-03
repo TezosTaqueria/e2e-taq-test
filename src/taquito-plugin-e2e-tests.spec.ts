@@ -132,7 +132,7 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	slow('taquito plugin can send from one instantiated account to another', async () => {
+	test('taquito plugin can send from one instantiated account to another', async () => {
 		const { execute, spawn, cleanup, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");

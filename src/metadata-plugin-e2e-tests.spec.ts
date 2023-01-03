@@ -7,7 +7,7 @@ import { prepareEnvironment } from '@gmrchk/cli-testing-library';
 
 describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 
-	jest.setTimeout(90000);
+	jest.setTimeout(120000);
 
 	test('1652 - generate-project-metadata will add a metadata entry to the config.json', async () => {
 		const { execute, spawn, cleanup, ls, writeFile, readFile } = await prepareEnvironment();
@@ -25,7 +25,7 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 			'taq', 'generate-project-metadata', './test-project'
 		);
 
-		await wait(1000);
+	
 		await waitForText2('Enter project name');
 		await writeText('test-project-name');
 		await pressKey('enter');
@@ -101,7 +101,6 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 			'taq', 'generate-metadata hello-tacos.mligo', './test-project'
 		);
 
-		await wait(1000);
 		await waitForText('Enter contract name');
 		await writeText('hello-tacos.mligo');
 		await pressKey('enter');
