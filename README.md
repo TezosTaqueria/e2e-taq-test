@@ -1,5 +1,5 @@
 # e2e-taq-test
-A portable repo for rapid user aaceptance e2e test of Taqueria
+A portable repo for rapid user acceptance e2e test of Taqueria
 Built using @gmrchk/cli-testing-library
 
 ### 1. Get a Taqueria executable to test - built from sources, pre-release, or post release
