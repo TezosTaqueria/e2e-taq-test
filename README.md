@@ -6,7 +6,7 @@ Built using @gmrchk/cli-testing-library
 #### Post Release
 ```
 curl -LO https://taqueria.io/get/linux/taq
-chmod +x taq1
+chmod +x taq
 sudo mv taq /usr/local/bin
 
 taq --version
