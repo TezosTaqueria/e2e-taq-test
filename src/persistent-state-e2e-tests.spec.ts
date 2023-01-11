@@ -11,7 +11,7 @@ describe('Persistent State E2E Tests for Taqueria CLI', () => {
 		const { execute, cleanup, writeFile, exists, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project --debug');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@next', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const mligo_file = await (await exec('cat src/test-data/hello-tacos.mligo')).stdout;
@@ -28,7 +28,7 @@ describe('Persistent State E2E Tests for Taqueria CLI', () => {
 		const { execute, cleanup, writeFile, exists, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project --debug');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@next', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const config_file = await (await exec('cat src/test-data/config-without-default-environment.json')).stdout;
@@ -47,7 +47,7 @@ describe('Persistent State E2E Tests for Taqueria CLI', () => {
 		const { execute, cleanup, writeFile, exists, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project --debug');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@next', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const config_file = await (await exec('cat src/test-data/config-default-environment-testing.json')).stdout;
@@ -67,7 +67,7 @@ describe('Persistent State E2E Tests for Taqueria CLI', () => {
 		const { execute, cleanup, writeFile, exists, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project --debug');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@next', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const mligo_file = await (await exec('cat src/test-data/hello-tacos.mligo')).stdout;

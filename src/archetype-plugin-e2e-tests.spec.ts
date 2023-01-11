@@ -11,7 +11,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 		1;
 
@@ -26,7 +26,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 		1;
 
@@ -42,7 +42,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 		1;
 
@@ -58,7 +58,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, writeFile, exists, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
@@ -76,7 +76,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, writeFile, exists, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
@@ -95,7 +95,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, writeFile, exists, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
@@ -116,7 +116,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const { stdout: stdout2, stderr } = await execute('taq', 'compile no_such_file.arl', './test-project');
@@ -130,7 +130,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, writeFile, exists, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const { stdout: stdout1, stderr } = await execute(
@@ -159,7 +159,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, writeFile, exists, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
@@ -167,7 +167,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 
 		const { stdout: stdout2, stderr: stderr1 } = await execute(
 			'taq',
-			'compile fa12.arl --plugin @taqueria/plugin-archetype',
+			'compile fa12.arl --plugin @taqueria/plugin-archetype@next',
 			'./test-project',
 		);
 		expect(stdout2).toEqual(expect.arrayContaining(['│ fa12.arl │ artifacts/fa12.tz │']));

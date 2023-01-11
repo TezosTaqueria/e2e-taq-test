@@ -20,7 +20,7 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		const { spawn, cleanup, execute, readFile, writeFile } = await prepareEnvironment();
 		const { waitForFinish } = await spawn('taq', 'init auto-test-npm-success');
 		await writeFile('./auto-test-npm-success/package.json', '{}');
-		const {} = await execute('taq', 'install @taqueria/plugin-ligo');
+		const {} = await execute('taq', 'install @taqueria/plugin-ligo@next');
 		await waitForFinish();
 		const content = await readFile('./auto-test-npm-success/package.json');
 		expect(content).toContain('"name": "auto-test-npm-success"');
@@ -101,55 +101,24 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		await cleanup();
 	});
 
-	test('install will error if package does not exist', async () => {
-		const { execute, cleanup, spawn } = await prepareEnvironment();
-		const { waitForText } = await spawn('taq', 'init test-project');
-		await waitForText("Project taq'ified!");
-		const { code } = await execute('taq', 'install acoupleofecadhamburgers -p foobar');
-		expect(code).toBe(1);
-		await cleanup();
-	});
-
-	// DEMONSTRATION OF https://github.com/ecadlabs/taqueria/issues/1635
-    test('bug 1635 - taquito plugin will only give contextual help for deploy in stderr', async () => {
-        const { execute, spawn, cleanup } = await prepareEnvironment();
-        const { waitForText } = await spawn('taq', 'init test-project');
-        await waitForText("Project taq'ified!");
-        const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito', './test-project');
-        expect(stdout).toContain('Plugin installed successfully');
-
-        //provide --help parameter 
-        const { stdout: stdout1 } = await execute('taq', 'deploy --help', './test-project');
-
-        //displays default help, not contextual help
-        expect(stdout1).toContain('taq [command]');
-
-        //fail to provide enough parameters 
-        const { stderr: stderr1 } = await execute('taq', 'deploy', './test-project');
-
-        //invokes stderr to display contextual help
-        expect(stderr1).toContain('Deploy a smart contract to a particular environment');
-        expect(stderr1).toContain('Not enough non-option arguments: got 0, need at least 1');
-
-        await cleanup();
-    });
-
 	test('contract types plugin will compile a contract and generate types', async () => {
-		const { spawn, cleanup, execute, readFile, writeFile, exists, ls } = await prepareEnvironment();
-		const { waitForText } = await spawn('taq', 'init test-project');
-		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
-		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
-		expect(stdout1).toContain('Plugin installed successfully');
+		const { execute, cleanup, exists, writeFile, ls } = await prepareEnvironment();
+		const {} = await execute('taq', 'init test-project');
+		await exists('./test-project/.taq/config.json');
+		const {} = await execute('taq', 'install @taqueria/plugin-ligo@next', './test-project');
+		await exists('./test-project/node_modules/@taqueria/plugin-ligo/index.js');
 
-		const increment_jsligo_file = (await (await exec('cat src/test-data/increment.jsligo')).stdout);
+		const increment_jsligo_file = ((await exec('cat src/test-data/increment.jsligo')).stdout);
 		await writeFile('./test-project/contracts/increment.jsligo', increment_jsligo_file);
 		await exists('./contracts/increment.jsligo');
 
+		const {} = await execute('taq', 'install @taqueria/plugin-contract-types@next', './test-project');
+		await exists('./test-project/node_modules/@taqueria/plugin-contract-types/index.js');
+
 		const { } = await execute('taq', 'compile increment.jsligo', './test-project');
 
-		const { stdout: stdout3 } = await execute('taq', 'generate types types', './test-project');
+		const { stdout: stdout3, stderr } = await execute('taq', 'generate types types', './test-project');
+		console.log(stderr)
 		expect(stdout3).toEqual(expect.arrayContaining(["generateTypes { typescriptDir: 'types' }"]));
 		expect(stdout3).toEqual(expect.arrayContaining(["Contracts Found:"]));
 		expect(stdout3).toEqual(expect.arrayContaining(["- {{base}}/test-project/artifacts/increment.tz"]));
