@@ -20,6 +20,15 @@ sudo mv taq /usr/local/bin
 
 taq --version
 ```
+In VsCode, do a full product search and replace of the version number, changing for example,
+```
+install @taqueria/plugin-contract-types@0.25.23-rc
+```
+to
+```
+install @taqueria/plugin-contract-types@0.26.0
+```
+
 #### Build from sources
 ```
 git clone https://github.com/ecadlabs/taqueria.git

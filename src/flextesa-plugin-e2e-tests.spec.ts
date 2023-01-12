@@ -12,9 +12,9 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await exec('docker rm -vf $(docker ps -aq) > /dev/null 2>&1 || echo "Docker clear."',{ cwd: `./` });
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@next', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.25.23-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const config_file = (await exec('cat src/test-data/config-flextesa-test-sandbox.json')).stdout;
@@ -43,9 +43,9 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await exec('docker rm -vf $(docker ps -aq) > /dev/null 2>&1 || echo "Docker clear."',{ cwd: `./` });
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@next', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.25.23-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const config_file = await (await exec('cat src/test-data/config-no-sandboxes.json')).stdout;
@@ -64,9 +64,9 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await exec('docker rm -vf $(docker ps -aq) > /dev/null 2>&1 || echo "Docker clear."',{ cwd: `./` });
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@next', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.25.23-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const { stderr } = await execute('taq', 'start sandbox no_such_sandbox', './test-project');
@@ -80,9 +80,9 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await exec('docker rm -vf $(docker ps -aq) > /dev/null 2>&1 || echo "Docker clear."',{ cwd: `./` });
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@next', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.25.23-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'show protocols', './test-project');
@@ -96,9 +96,9 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await exec('docker rm -vf $(docker ps -aq) > /dev/null 2>&1 || echo "Docker clear."',{ cwd: `./` });
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@next', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.25.23-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'stop sandbox local', './test-project');
@@ -113,9 +113,9 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await exec('docker rm -vf $(docker ps -aq) > /dev/null 2>&1 || echo "Docker clear."',{ cwd: `./` });
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@next', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.25.23-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const { stderr } = await execute('taq', 'list accounts local', './test-project');
@@ -129,9 +129,9 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await exec('docker rm -vf $(docker ps -aq) > /dev/null 2>&1 || echo "Docker clear."',{ cwd: `./` });
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@next', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.25.23-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const {} = await execute('taq', 'start sandbox local', './test-project');
@@ -147,9 +147,9 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await exec('docker rm -vf $(docker ps -aq) > /dev/null 2>&1 || echo "Docker clear."',{ cwd: `./` });
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@next', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.25.23-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const {} = await execute('taq', 'start sandbox local', './test-project');
@@ -161,14 +161,14 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 	});
 
 	// config does not include baker by default - is this a bug?
-	test.skip('start sandbox will initiate a baker daemon by default', async () => {
+	test('start sandbox will initiate a baker daemon by default', async () => {
 		await exec('docker rm -vf $(docker ps -aq) > /dev/null 2>&1 || echo "Docker clear."',{ cwd: `./` });
 		const { execute, cleanup, spawn, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@next', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.25.23-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'start sandbox local', './test-project');

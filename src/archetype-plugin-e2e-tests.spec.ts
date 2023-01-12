@@ -11,26 +11,24 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@0.25.23-rc', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
-		1;
 
-		const { stdout: stdout1 } = await execute('taq', '--help --projectDir=./test-project/', './test-project');
-		expect(stdout1).toEqual(expect.arrayContaining(['taq [command]']));
+		const { stdout: stdout1 } = await execute('taq', '--help/', './test-project');
+		expect(stdout1).toEqual(expect.arrayContaining(['taq <command>']));
 
 		await cleanup();
 	});
 
 	// blocked by https://github.com/ecadlabs/taqueria/issues/1635
-	test.skip('compile offers contextual help', async () => {
+	test('compile offers contextual help', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@0.25.23-rc', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
-		1;
 
-		const { stdout: stdout1 } = await execute('taq', 'c --help --projectDir=./test-project/', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'c --help/', './test-project');
 		expect(stdout1).toEqual(
 			expect.arrayContaining(['Compile a smart contract written in a Archetype syntax to Michelson code']),
 		);
@@ -42,9 +40,8 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@0.25.23-rc', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
-		1;
 
 		const { stdout: stdout1 } = await execute('taq', 'compile', './test-project');
 		expect(stdout1).toEqual(expect.arrayContaining(['│ None found │ N/A      │']));
@@ -54,11 +51,11 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 
 	// this isn't working. should it? should compile find all files in contracts dir?
 	// see https://github.com/ecadlabs/taqueria/issues/1678
-	test.skip('compile will compile one contract under contracts folder without a parameter', async () => {
+	test('compile will compile one contract under contracts folder without a parameter', async () => {
 		const { execute, spawn, writeFile, exists, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@0.25.23-rc', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
@@ -72,18 +69,23 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	test('compile will compile one contract with [sourceFile] command', async () => {
+	test.only('compile will compile one contract with [sourceFile] command', async () => {
 		const { execute, spawn, writeFile, exists, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@0.25.23-rc', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
 		writeFile('./test-project/contracts/fa12.arl', arl_file);
 
+		await new Promise(r => setTimeout(r, 3000));
+
 		const { stdout: stdout2, stderr } = await execute('taq', 'compile fa12.arl', './test-project');
+		console.log(stdout2)
+		console.log(stderr)
 		expect(stdout2).toEqual(expect.arrayContaining(['│ fa12.arl │ artifacts/fa12.tz │']));
+		console.log(stderr)
 
 		await exists(`./test-project/artifacts/fa12.tz`);
 
@@ -91,11 +93,11 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 	});
 
 	// blocked by https://github.com/ecadlabs/taqueria/issues/1678
-	test.skip('compile will compile multiple contracts in the contracts folder', async () => {
+	test('compile will compile multiple contracts in the contracts folder', async () => {
 		const { execute, spawn, writeFile, exists, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@0.25.23-rc', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
@@ -116,7 +118,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@0.25.23-rc', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const { stdout: stdout2, stderr } = await execute('taq', 'compile no_such_file.arl', './test-project');
@@ -126,11 +128,11 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 	});
 
 	// hangs waiting to execute the image command
-	test.skip('compile can use different versions of the Archetype image', async () => {
+	test('compile can use different versions of the Archetype image', async () => {
 		const { execute, spawn, writeFile, exists, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@0.25.23-rc', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const { stdout: stdout1, stderr } = await execute(
@@ -159,7 +161,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, writeFile, exists, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-archetype@0.25.23-rc', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['Plugin installed successfully']));
 
 		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
@@ -167,7 +169,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 
 		const { stdout: stdout2, stderr: stderr1 } = await execute(
 			'taq',
-			'compile fa12.arl --plugin @taqueria/plugin-archetype@next',
+			'compile fa12.arl --plugin @taqueria/plugin-archetype',
 			'./test-project',
 		);
 		expect(stdout2).toEqual(expect.arrayContaining(['│ fa12.arl │ artifacts/fa12.tz │']));

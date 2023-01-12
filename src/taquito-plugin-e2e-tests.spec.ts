@@ -8,7 +8,7 @@ import { prepareEnvironment } from '@gmrchk/cli-testing-library';
 describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 
     jest.setTimeout(90000);
-	//const slow = test.skip;
+	//const slow = test;
 
 	test('taquito plugin will display help', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
@@ -16,7 +16,7 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		await waitForText("Project taq'ified!");
 		const { stdout } = await execute('taq', '--help', './test-project');
 
-		expect(stdout).toContain('taq [command]');
+		expect(stdout).toContain('taq <command>');
 
 		await cleanup();
 	});
@@ -25,7 +25,8 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@next', './test-project');
+		await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const storage_file = await (await exec('cat src/test-data/anyContract.storage.tz')).stdout;
@@ -57,7 +58,7 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@next', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stderr } = await execute('taq', 'fund', './test-project');
@@ -70,13 +71,15 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@next', './test-project');
+		await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const test_config_file = await (await exec('cat src/test-data/config-taquito-test-environment.json')).stdout;
 		await writeFile('./test-project/.taq/config.json', test_config_file);
 
-		const { stdout: stdout2 } = await execute('taq', 'fund -e testing', './test-project');
+		const { stdout: stdout2, stderr } = await execute('taq', 'fund -e testing', './test-project');
+		console.log(stderr);	
 		expect(stdout2).toContain(
 			'All instantiated accounts in the current environment, "testing", are funded up to or beyond the declared amount',
 		);
@@ -88,7 +91,8 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@next', './test-project');
+		await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const test_config_file = await (await exec('cat src/test-data/config-taquito-test-environment.json')).stdout;
@@ -110,7 +114,8 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup, writeFile, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@next', './test-project');
+		await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const test_config_file = await (await exec('cat src/test-data/config-taquito-test-environment-low-tez.json')).stdout;
@@ -136,7 +141,8 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@next', './test-project');
+		await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const test_config_file = await (await exec('cat src/test-data/config-taquito-test-environment-low-tez.json')).stdout;
@@ -169,7 +175,8 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@next', './test-project');
+		await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const tz_file = await (await exec('cat src/test-data/hello-tacos.tz')).stdout;
@@ -189,7 +196,8 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@next', './test-project');
+		await execute('taq', 'install @taqueria/plugin-core@0.25.23-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.25.23-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const test_config_file =
