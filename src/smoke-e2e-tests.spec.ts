@@ -20,7 +20,7 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		const { spawn, cleanup, execute, readFile, writeFile } = await prepareEnvironment();
 		const { waitForFinish } = await spawn('taq', 'init auto-test-npm-success');
 		await writeFile('./auto-test-npm-success/package.json', '{}');
-		const {} = await execute('taq', 'install @taqueria/plugin-ligo@0.25.23-rc');
+		const {} = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc');
 		await waitForFinish();
 		const content = await readFile('./auto-test-npm-success/package.json');
 		expect(content).toContain('"name": "auto-test-npm-success"');
@@ -96,14 +96,14 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		const { execute, cleanup, exists, writeFile, ls } = await prepareEnvironment();
 		const {} = await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
-		const {} = await execute('taq', 'install @taqueria/plugin-ligo@0.25.23-rc', './test-project');
+		const {} = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
 		await exists('./test-project/node_modules/@taqueria/plugin-ligo/index.js');
 
 		const increment_jsligo_file = ((await exec('cat src/test-data/increment.jsligo')).stdout);
 		await writeFile('./test-project/contracts/increment.jsligo', increment_jsligo_file);
 		await exists('./contracts/increment.jsligo');
 
-		const {} = await execute('taq', 'install @taqueria/plugin-contract-types@0.25.23-rc', './test-project');
+		const {} = await execute('taq', 'install @taqueria/plugin-contract-types@0.26.28-rc', './test-project');
 		await exists('./test-project/node_modules/@taqueria/plugin-contract-types/index.js');
 
 		const { } = await execute('taq', 'compile increment.jsligo', './test-project');

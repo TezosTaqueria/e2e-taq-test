@@ -13,7 +13,7 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, spawn, cleanup, ls, writeFile, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-metadata@0.25.23-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-metadata@0.26.28-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const mligo_file = await (await exec(`cat src/test-data/hello-tacos.mligo`)).stdout;
@@ -71,7 +71,7 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, spawn, cleanup, ls, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-metadata@0.25.23-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-metadata@0.26.28-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const mligo_file = await (await exec(`cat src/test-data/hello-tacos.mligo`)).stdout;
@@ -89,7 +89,7 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, spawn, cleanup, ls, writeFile, readFile } = await prepareEnvironment();
 		const { stdout } = await execute('taq', 'init test-project');
 		expect(stdout).toContain("Project taq'ified!");
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-metadata@0.25.23-rc', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-metadata@0.26.28-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const mligo_file = await (await exec(`cat src/test-data/hello-tacos.mligo`)).stdout;
