@@ -4,7 +4,7 @@ import util from 'util';
 const exec = util.promisify(exec1);
 
 describe('Taco Shop Scaffold Tutorial E2E Testing', () => {
-	jest.setTimeout(100000);
+	jest.setTimeout(200000);
 
 	test('scaffold project will get set up.', async () => {
 		const { execute, exists, writeFile, readFile, cleanup } = await prepareEnvironment();

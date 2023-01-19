@@ -2,13 +2,10 @@ import { exec as exec1 } from 'child_process';
 import util from 'util';
 const exec = util.promisify(exec1);
 import { prepareEnvironment } from '@gmrchk/cli-testing-library';
-import { isStringTextContainingNode } from 'typescript';
 
 describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 
     jest.setTimeout(60000);
-
-	
 
 	test('test will create a default "tests" partition and jest config when called with no arguments', async () => {
 		const { execute, cleanup, exists, spawn } = await prepareEnvironment();
@@ -36,10 +33,6 @@ describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 		await waitForText("Project taq'ified!");
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('npm', 'install --save-dev ts-jest', './test-project');
-		expect(stdout1).toEqual(expect.arrayContaining([expect.stringContaining('packages')]));
-		const { stdout: stdout2 } = await execute('npm', 'i --save-dev @types/jest', './test-project');
-		expect(stdout2).toEqual(expect.arrayContaining([expect.stringContaining('packages')]));
 
 		const { stdout: stdout3 } = await execute('taq', 'test -i automated-tests-initialization', './test-project');
 		expect(stdout3).toEqual(expect.arrayContaining(['Initialized successfully.']));

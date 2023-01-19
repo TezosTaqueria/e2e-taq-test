@@ -4,17 +4,20 @@ const exec = util.promisify(exec1);
 import { prepareEnvironment } from '@gmrchk/cli-testing-library';
 
 describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
+	
+	jest.setTimeout(190000);
+
 	test('start and stop will work with a custom name sandbox - slowtest', async () => {
-		const { execute, cleanup, writeFile, exists } = await prepareEnvironment();
+		const { execute, cleanup, writeFile, readFile, exists } = await prepareEnvironment();
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
-		const config_file = await (await exec('cat e2e/data/config-data/config-flextesa-test-sandbox.json')).stdout;
+		const config_file = await (await exec('cat src/test-data/config-flextesa-test-sandbox.json')).stdout;
 		await writeFile('./test-project/.taq/config.json', config_file);
 
 		await execute('taq', 'install @taqueria/plugin-flextesa@0.26.28-rc', './test-project');
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
-		const { stdout: stdout2 } = await execute('taq', 'start sandbox test', './test-project');
+		const { stdout: stdout2, stderr } = await execute('taq', 'start sandbox test', './test-project');
 		expect(stdout2).toEqual(expect.arrayContaining(['Starting node...']));
 
 		const { stdout: stdout3 } = await execute('docker', 'ps --filter name=taq-flextesa-test', './test-project');

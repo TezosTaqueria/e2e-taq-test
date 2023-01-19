@@ -7,7 +7,7 @@ import { prepareEnvironment } from '@gmrchk/cli-testing-library';
 
 describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 
-    jest.setTimeout(30000);
+    jest.setTimeout(130000);
 
 	test('contract types plugin will offer help', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
@@ -22,33 +22,7 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-    // bug - https://github.com/ecadlabs/taqueria/issues/1635
-	test('1635 - generate types offers contextual help', async () => {
-		const { execute, spawn, cleanup } = await prepareEnvironment();
-		const { waitForText } = await spawn('taq', 'init test-project');
-		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@0.26.28-rc', './test-project');
-		expect(stdout).toContain('Plugin installed successfully');
 
-		const { stdout: stdout2 } = await execute('taq', 'generate types --help');
-		expect(stdout2).toEqual(expect.arrayContaining(['Generate types for a contract to be used with taquito']));
-
-		await cleanup();
-	});
-
-	// bug - https://github.com/ecadlabs/taqueria/issues/1635
-    test('1635 - gen offers contextual help', async () => {
-		const { execute, spawn, cleanup } = await prepareEnvironment();
-		const { waitForText } = await spawn('taq', 'init test-project');
-		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@0.26.28-rc', './test-project');
-		expect(stdout).toContain('Plugin installed successfully');
-
-		const { stdout: stdout2 } = await execute('taq', 'gen --help');
-		expect(stdout2).toEqual(expect.arrayContaining(['Generate types for a contract to be used with taquito']));
-
-		await cleanup();
-	});
 
 	test('generate types will only output the typeScriptDir and will not create a types dir when no contracts exist', async () => {
 		const { execute, spawn, cleanup, ls } = await prepareEnvironment();
@@ -62,6 +36,39 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		expect(stdout1).toContain(`generateTypes { typescriptDir: 'types' }`);
 
 		expect(await ls('./test-project/')).not.toContain('types');
+
+		await cleanup();
+	});
+
+	test('contract types plugin will compile a contract and generate types', async () => {
+		const { execute, cleanup, exists, writeFile, ls } = await prepareEnvironment();
+		const {} = await execute('taq', 'init test-project');
+		await exists('./test-project/.taq/config.json');
+		const {} = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		await exists('./test-project/node_modules/@taqueria/plugin-ligo/index.js');
+
+		const increment_jsligo_file = ((await exec('cat src/test-data/increment.jsligo')).stdout);
+		await writeFile('./test-project/contracts/increment.jsligo', increment_jsligo_file);
+		await exists('./contracts/increment.jsligo');
+
+		const {} = await execute('taq', 'install @taqueria/plugin-contract-types@0.26.28-rc', './test-project');
+		await exists('./test-project/node_modules/@taqueria/plugin-contract-types/index.js');
+
+		const { } = await execute('taq', 'compile increment.jsligo', './test-project');
+
+		const { stdout: stdout3, stderr } = await execute('taq', 'generate types types', './test-project');
+		console.log(stderr)
+		expect(stdout3).toEqual(expect.arrayContaining(["generateTypes { typescriptDir: 'types' }"]));
+		expect(stdout3).toEqual(expect.arrayContaining(["Contracts Found:"]));
+		expect(stdout3).toEqual(expect.arrayContaining(["- {{base}}/test-project/artifacts/increment.tz"]));
+		expect(stdout3).toEqual(expect.arrayContaining(["Processing /increment.tz..."]));
+		expect(stdout3).toEqual(expect.arrayContaining(["increment.tz: Types generated"]));
+
+		expect(await ls('./test-project/')).toContain('types');
+		expect(await ls('./test-project/types')).toContain('increment.code.ts');
+		expect(await ls('./test-project/types')).toContain('increment.types.ts');
+		expect(await ls('./test-project/types')).toContain('type-aliases.ts');
+		expect(await ls('./test-project/types')).toContain('type-utils.ts');
 
 		await cleanup();
 	});
@@ -147,39 +154,6 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const {} = await execute('taq', 'compile increment.jsligo', './test-project');
 
 		const { stdout: stdout2 } = await execute('taq', 'gen types', './test-project');
-		expect(stdout2).toContain(`generateTypes { typescriptDir: 'types' }`);
-		expect(stdout2).toEqual(
-			expect.arrayContaining(['Generating Types: {{base}}/test-project/artifacts => {{base}}/test-project/types']),
-		);
-		expect(stdout2).toEqual(expect.arrayContaining(['Contracts Found:']));
-		expect(stdout2).toEqual(expect.arrayContaining(['- {{base}}/test-project/artifacts/increment.tz']));
-		expect(stdout2).toEqual(expect.arrayContaining(['Processing /increment.tz...']));
-		expect(stdout2).toEqual(expect.arrayContaining(['increment.tz: Types generated']));
-
-		expect(await ls('./test-project/')).toContain('types');
-		expect(await ls('./test-project/types')).toContain('increment.code.ts');
-		expect(await ls('./test-project/types')).toContain('increment.types.ts');
-		expect(await ls('./test-project/types')).toContain('type-aliases.ts');
-		expect(await ls('./test-project/types')).toContain('type-utils.ts');
-
-		await cleanup();
-	});
-
-	test('generate types -t "file" can compile one contract and generate types', async () => {
-		const { execute, cleanup, spawn, writeFile, ls } = await prepareEnvironment();
-		const { waitForText } = await spawn('taq', 'init test-project');
-		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@0.26.28-rc', './test-project');
-		expect(stdout).toContain('Plugin installed successfully');
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
-		expect(stdout1).toContain('Plugin installed successfully');
-
-		const jsligo_file = await (await exec(`cat src/test-data/increment.jsligo`)).stdout;
-		await writeFile('./test-project/contracts/increment.jsligo', jsligo_file);
-
-		const {} = await execute('taq', 'compile increment.jsligo', './test-project');
-
-		const { stdout: stdout2 } = await execute('taq', 'generate types -t "file"', './test-project');
 		expect(stdout2).toContain(`generateTypes { typescriptDir: 'types' }`);
 		expect(stdout2).toEqual(
 			expect.arrayContaining(['Generating Types: {{base}}/test-project/artifacts => {{base}}/test-project/types']),

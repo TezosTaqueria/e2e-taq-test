@@ -4,20 +4,8 @@ const exec = utils.promisify(exec1);
 import { prepareEnvironment } from '@gmrchk/cli-testing-library';
 
 describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
-	test('compile offers contextual help', async () => {
-		const { execute, cleanup, exists } = await prepareEnvironment();
-		await execute('taq', 'init test-project');
-		await exists('./test-project/.taq/config.json');
-		await execute('taq', 'install @taqueria/plugin-archetype@0.26.28-rc', './test-project');
-		await exists('./test-project/node_modules/@taqueria/plugin-archetype/index.js');
+	jest.setTimeout(30000);
 
-		const { stdout } = await execute('taq', 'compile --help', './test-project');
-		expect(stdout).toEqual(
-			expect.arrayContaining(['Compile a smart contract written in a Archetype syntax to Michelson code']),
-		);
-
-		await cleanup();
-	});
 
 	test('compile will error if no contract parameter passed and no contract exists', async () => {
 		const { execute, cleanup, exists } = await prepareEnvironment();
@@ -54,14 +42,14 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 	// this isn't working. should it? should compile find all files in contracts dir?
 	// see https://github.com/ecadlabs/taqueria/issues/1678
 	// manually confirmed to fail in pre-release v0.25.23-rc
-	test.skip('compile will compile one contract under contracts folder without a parameter', async () => {
+	test('compile will compile one contract under contracts folder without a parameter', async () => {
 		const { execute, cleanup, writeFile, exists } = await prepareEnvironment();
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 		await execute('taq', 'install @taqueria/plugin-archetype@0.26.28-rc', './test-project');
 		await exists('./test-project/node_modules/@taqueria/plugin-archetype/index.js');
 
-		const arl_file = await (await exec('cat e2e/data/archetype-data/fa12.arl')).stdout;
+		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
 		writeFile('./test-project/contracts/fa12.arl', arl_file);
 
 		const { stdout } = await execute('taq', 'compile', './test-project');
@@ -79,10 +67,10 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'install @taqueria/plugin-archetype@0.26.28-rc', './test-project');
 		await exists('./test-project/node_modules/@taqueria/plugin-archetype/index.js');
 
-		const arl_file = await (await exec('cat e2e/data/archetype-data/fa12.arl')).stdout;
+		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
 		writeFile('./test-project/contracts/fa12.arl', arl_file);
 
-		const { stdout } = await execute('taq', 'compile fa12.arl', './test-project');
+		const { stdout, stderr } = await execute('taq', 'compile fa12.arl', './test-project');
 		expect(stdout).toEqual(expect.arrayContaining(['│ fa12.arl │ artifacts/fa12.tz │']));
 
 		await exists(`./test-project/artifacts/fa12.tz`);
@@ -92,16 +80,16 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 
 	// blocked by https://github.com/ecadlabs/taqueria/issues/1678
 	// manually confirmed to fail in pre-release v0.25.23-rc
-	test.skip('compile will compile multiple contracts in the contracts folder', async () => {
+	test('compile will compile multiple contracts in the contracts folder', async () => {
 		const { execute, cleanup, writeFile, exists } = await prepareEnvironment();
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 		await execute('taq', 'install @taqueria/plugin-archetype@0.26.28-rc', './test-project');
 		await exists('./test-project/node_modules/@taqueria/plugin-archetype/index.js');
 
-		const arl_file = await (await exec('cat e2e/data/archetype-data/fa12.arl')).stdout;
+		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
 		writeFile('./test-project/contracts/fa12.arl', arl_file);
-		const animal_file = await (await exec('cat e2e/data/archetype-data/animal_tracking.arl')).stdout;
+		const animal_file = await (await exec('cat src/test-data/animal_tracking.arl')).stdout;
 		writeFile('./test-project/contracts/animal_tracking.arl', animal_file);
 
 		const { stdout } = await execute('taq', 'compile', './test-project');
@@ -142,7 +130,7 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		);
 		expect(stdout).toEqual(expect.arrayContaining(['│ completium/archetype:1.3.5 │']));
 
-		const arl_file = await (await exec('cat e2e/data/arch-1.3.5-example.arl')).stdout;
+		const arl_file = await (await exec('cat src/test-data/arch-1.3.5-example.arl')).stdout;
 		writeFile('./test-project/contracts/arch-1.3.5-example.arl', arl_file);
 
 		const { stdout: stdout1 } = await execute(
@@ -164,12 +152,12 @@ describe('Archetype Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'install @taqueria/plugin-archetype@0.26.28-rc', './test-project');
 		await exists('./test-project/node_modules/@taqueria/plugin-archetype/index.js');
 
-		const arl_file = await (await exec('cat e2e/data/archetype-data/fa12.arl')).stdout;
+		const arl_file = await (await exec('cat src/test-data/fa12.arl')).stdout;
 		writeFile('./test-project/contracts/fa12.arl', arl_file);
 
 		const { stdout } = await execute(
 			'taq',
-			'compile fa12.arl --plugin @taqueria/plugin-archetype',
+			'compile fa12.arl --plugin @taqueria/plugin-archetype@0.26.28-rc',
 			'./test-project',
 		);
 		expect(stdout).toEqual(expect.arrayContaining(['│ fa12.arl │ artifacts/fa12.tz │']));

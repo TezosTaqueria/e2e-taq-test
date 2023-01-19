@@ -92,36 +92,4 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		await cleanup();
 	});
 
-	test('contract types plugin will compile a contract and generate types', async () => {
-		const { execute, cleanup, exists, writeFile, ls } = await prepareEnvironment();
-		const {} = await execute('taq', 'init test-project');
-		await exists('./test-project/.taq/config.json');
-		const {} = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
-		await exists('./test-project/node_modules/@taqueria/plugin-ligo/index.js');
-
-		const increment_jsligo_file = ((await exec('cat src/test-data/increment.jsligo')).stdout);
-		await writeFile('./test-project/contracts/increment.jsligo', increment_jsligo_file);
-		await exists('./contracts/increment.jsligo');
-
-		const {} = await execute('taq', 'install @taqueria/plugin-contract-types@0.26.28-rc', './test-project');
-		await exists('./test-project/node_modules/@taqueria/plugin-contract-types/index.js');
-
-		const { } = await execute('taq', 'compile increment.jsligo', './test-project');
-
-		const { stdout: stdout3, stderr } = await execute('taq', 'generate types types', './test-project');
-		console.log(stderr)
-		expect(stdout3).toEqual(expect.arrayContaining(["generateTypes { typescriptDir: 'types' }"]));
-		expect(stdout3).toEqual(expect.arrayContaining(["Contracts Found:"]));
-		expect(stdout3).toEqual(expect.arrayContaining(["- {{base}}/test-project/artifacts/increment.tz"]));
-		expect(stdout3).toEqual(expect.arrayContaining(["Processing /increment.tz..."]));
-		expect(stdout3).toEqual(expect.arrayContaining(["increment.tz: Types generated"]));
-
-		expect(await ls('./test-project/')).toContain('types');
-		expect(await ls('./test-project/types')).toContain('increment.code.ts');
-		expect(await ls('./test-project/types')).toContain('increment.types.ts');
-		expect(await ls('./test-project/types')).toContain('type-aliases.ts');
-		expect(await ls('./test-project/types')).toContain('type-utils.ts');
-
-		await cleanup();
-	});
 });
