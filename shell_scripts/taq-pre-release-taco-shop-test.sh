@@ -43,42 +43,18 @@ chmod +x taq-linux
 mv taq-linux taq
 sudo mv taq /usr/local/bin
 
-# Check if Taqueria is installed
-V=$(taq --version)
-if [ "$V" = "$VERSION" ]; then
-    echo "Taqueria version $VERSION installed"
-else
-    echo "Taqueria version $VERSION not installed"
-fi
-
-# Initialize the test directory
-taq init taq_test_"$VERSION"
-cd taq_test_"$VERSION" || exit
+# Scaffold and Initialize the Project
+taq scaffold https://github.com/ecadlabs/taqueria-scaffold-taco-shop taco-shop
+cd taco-shop
 cp ~/taqueria-test-files/contracts/* ./contracts
 cp ~/taqueria-test-files/artifacts/* ./artifacts
 
-# Install the ligo plugin
-taq install @taqueria/plugin-ligo@"$VERSION"
+taq compile taco-shop.mligo
 
-# Compile the contracts
-taq compile counter.mligo
+taq originate taco-shop.tz -e testing
 
-# Install the flextesa plugin
-taq install @taqueria/plugin-flextesa@"$VERSION"
-
-# Start the sandbox
-taq start sandbox local
-
-# List the accounts
-taq list accounts local
-
-# Install the taquito plugin
-taq install @taqueria/plugin-taquito@"$VERSION"
-
-# Originate the counter contract
-taq originate counter.tz --sender alice
-
-# Increment the counter by 3
-taq transfer counter --param counter.parameter.increment_by_3.tz
+cd app
+npm run build
+npm run start
 
 ## End of script
