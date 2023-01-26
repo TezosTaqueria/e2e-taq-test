@@ -2,6 +2,8 @@
 A portable repo for rapid user acceptance e2e test of Taqueria
 Built using @gmrchk/cli-testing-library
 
+For super rapid acceptance testing try the shell scripts!
+
 ### 1. Get a Taqueria executable to test - built from sources, pre-release, or post release
 #### Post Release
 ```
