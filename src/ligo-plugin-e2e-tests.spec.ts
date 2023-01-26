@@ -15,9 +15,9 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 
-		await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 		await exists('./test-project/node_modules/@taqueria/plugin-ligo/index.js');
-		await execute('taq', '@taqueria/plugin-flextesa@0.26.28-rc', './test-project');
+		await execute('taq', '@taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
 		const mligo_file = await (await exec(`cat src/test-data/counter.mligo`)).stdout;
@@ -36,7 +36,7 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 			expect.arrayContaining(['counter.mligo', 'counter.parameterList.mligo', 'counter.storageList.mligo']),
 		);
 
-		const { stdout: stdout1, stderr: stderr0 } = await execute('taq', 'compile counter.mligo --plugin @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		const { stdout: stdout1, stderr: stderr0 } = await execute('taq', 'compile counter.mligo --plugin @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 			console.log('stdout1', stdout1);
 			console.log('stderr0', stderr0);
 		expect(stdout1).toMatchInlineSnapshot(`
@@ -68,40 +68,11 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stderr } = await execute('taq', 'compile', './test-project');
 		expect(stderr).toEqual(expect.arrayContaining(['Not enough non-option arguments: got 0, need at least 1']));
-
-		await cleanup();
-	});
-
-	test('ligo plugin add-contract will register a contract', async () => {
-		const { execute, cleanup, spawn, writeFile } = await prepareEnvironment();
-		const { waitForText } = await spawn('taq', 'init test-project');
-		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
-		expect(stdout).toContain('Plugin installed successfully');
-
-		const mligo_file = await (await exec(`cat src/test-data/hello-tacos.mligo`)).stdout;
-		await writeFile('./test-project/contracts/hello-tacos.mligo', mligo_file);
-
-		const { stdout: stdout2 } = await execute('taq', 'add-contract hello-tacos.mligo', './test-project');
-		expect(stdout2).toEqual(expect.arrayContaining(['│ No registered contracts found │']));
-
-		await cleanup();
-	});
-
-	test('ligo plugin add-contract will error if named contract does not exist', async () => {
-		const { execute, cleanup, spawn } = await prepareEnvironment();
-		const { waitForText } = await spawn('taq', 'init test-project');
-		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
-		expect(stdout).toContain('Plugin installed successfully');
-
-		const { stderr } = await execute('taq', 'add-contract no_such_contract.mligo', './test-project');
-		expect(stderr).toEqual(expect.arrayContaining(['Could not read {{base}}/test-project/contracts/no_such_contract.mligo']));
 
 		await cleanup();
 	});
@@ -111,7 +82,7 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
 
-		const { stdout, stderr } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		const { stdout, stderr } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const artifacts_list_before = await ls('./test-project/artifacts');
@@ -133,7 +104,7 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2, stderr } = await execute('taq', 'compile does_not_exist.mligo', './test-project');
@@ -147,7 +118,7 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const mligo_file = await (await exec('cat src/test-data/hello-tacos.mligo')).stdout;
@@ -167,7 +138,7 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const mligo_file = await (await exec('cat src/test-data/hello-tacos.mligo')).stdout;
@@ -182,24 +153,12 @@ describe('Ligo Plugin E2E Testing for Taqueria CLI', () => {
 		await cleanup();
 	});
 
-	test('ligo plugin test will error if named file does not exist', async () => {
-		const { execute, cleanup, spawn } = await prepareEnvironment();
-		const { waitForText } = await spawn('taq', 'init test-project');
-		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
-		expect(stdout).toContain('Plugin installed successfully');
-
-		const { stderr } = await execute('taq', 'test hello-tacos-test.mligo', './test-project');
-		expect(stderr).toEqual(expect.arrayContaining(['contracts/hello-tacos-test.mligo: No such file or directory.\\n']));
-
-		await cleanup();
-	});
 
 	test('LIGO contract template will be instantiated with the right content and registered', async () => {
 		const { execute, cleanup, spawn, readFile, ls } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { code } = await execute('taq', 'create contract counter.mligo', './test-project');

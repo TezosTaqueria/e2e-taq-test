@@ -9,7 +9,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout3 } = await execute('taq', '--help', './test-project');
@@ -23,7 +23,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout3 } = await execute('taq', 'test --help', './test-project');
@@ -37,7 +37,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout3 } = await execute('taq', 'jest --help', './test-project');
@@ -51,7 +51,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout3 } = await execute('taq', 'create contract-test --help', './test-project');
@@ -64,7 +64,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', '--help', './test-project');
@@ -78,7 +78,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'compile --help', './test-project');
@@ -94,7 +94,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute(
@@ -114,7 +114,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'deploy --help', './test-project');
@@ -128,7 +128,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.26.28-rc', 'test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@v0.27.17-rc', 'test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'originate --help', './test-project');
@@ -142,7 +142,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'transfer --help', './test-project');
@@ -156,7 +156,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'call --help', './test-project');
@@ -170,7 +170,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'fund --help', './test-project');
@@ -180,11 +180,11 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 	});
 
 	
-	test('taquito plugin will give contextual help for instantiate-account', async () => {
+	test('1635 - taquito plugin will give contextual help for instantiate-account', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-taquito@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'instantiate-account --help');
@@ -198,7 +198,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.26.28-rc', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2, stderr } = await execute(
@@ -216,7 +216,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.26.28-rc', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2, stderr } = await execute(
@@ -233,7 +233,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@0.26.28-rc', './test-project');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2, stderr } = await execute(
@@ -251,7 +251,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-smartpy@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-smartpy@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout1 } = await execute('taq', 'compile --help', './test-project');
@@ -261,11 +261,11 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 	});
 
 	    // bug - https://github.com/ecadlabs/taqueria/issues/1635
-		test('generate types offers contextual help', async () => {
+		test('1635 - generate types offers contextual help', async () => {
 			const { execute, spawn, cleanup } = await prepareEnvironment();
 			const { waitForText } = await spawn('taq', 'init test-project');
 			await waitForText("Project taq'ified!");
-			const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@0.26.28-rc', './test-project');
+			const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
 			expect(stdout).toContain('Plugin installed successfully');
 	
 			const { stdout: stdout2 } = await execute('taq', 'generate types --help');
@@ -275,11 +275,11 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 		});
 	
 		// bug - https://github.com/ecadlabs/taqueria/issues/1635
-		test('gen offers contextual help', async () => {
+		test('1635 - gen offers contextual help', async () => {
 			const { execute, spawn, cleanup } = await prepareEnvironment();
 			const { waitForText } = await spawn('taq', 'init test-project');
 			await waitForText("Project taq'ified!");
-			const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@0.26.28-rc', './test-project');
+			const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
 			expect(stdout).toContain('Plugin installed successfully');
 	
 			const { stdout: stdout2 } = await execute('taq', 'gen --help');
@@ -293,7 +293,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 			const { execute, cleanup, exists } = await prepareEnvironment();
 			await execute('taq', 'init test-project');
 			await exists('./test-project/.taq/config.json');
-			await execute('taq', 'install @taqueria/plugin-archetype@0.26.28-rc', './test-project');
+			await execute('taq', 'install @taqueria/plugin-archetype@v0.27.17-rc', './test-project');
 			await exists('./test-project/node_modules/@taqueria/plugin-archetype/index.js');
 	
 			const { stdout } = await execute('taq', 'compile --help', './test-project');
@@ -304,27 +304,6 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 			await cleanup();
 		});
 
-			// see https://github.com/ecadlabs/taqueria/issues/1635
-	// works manually
-	// might not be working in tests because of the hyphen in the task name
-	test('instantiate-account will give contextual help', async () => {
-		const { execute, spawn, cleanup } = await prepareEnvironment();
-		const { waitForText } = await spawn('taq', 'init test-project');
-		await waitForText("Project taq'ified!");
-		const { stdout: stdout1 } = await execute(
-			'taq',
-			'install @taqueria/plugin-taquito@0.26.28-rc',
-			'./test-project',
-		);
-		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));
-
-		const { stdout: stdout2 } = await execute('taq', 'instantiate-account --help');
-		expect(stdout2).toContain(
-			'Instantiate all accounts declared in the "accounts" field at the root level of the config file to a target environment',
-		);
-
-		await cleanup();
-	});
 
 	test('deploy will give contextual help', async () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
@@ -333,7 +312,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 
 		const { stdout: stdout1 } = await execute(
 			'taq',
-			'install @taqueria/plugin-taquito@0.26.28-rc',
+			'install @taqueria/plugin-taquito@v0.27.17-rc',
 			'./test-project',
 		);
 		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));
@@ -351,7 +330,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 
 		const { stdout: stdout1 } = await execute(
 			'taq',
-			'install @taqueria/plugin-taquito@0.26.28-rc',
+			'install @taqueria/plugin-taquito@v0.27.17-rc',
 			'./test-project',
 		);
 		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));
@@ -369,7 +348,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 
 		const { stdout: stdout1 } = await execute(
 			'taq',
-			'install @taqueria/plugin-taquito@0.26.28-rc',
+			'install @taqueria/plugin-taquito@v0.27.17-rc',
 			'./test-project',
 		);
 		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));
@@ -389,7 +368,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 
 		const { stdout: stdout1 } = await execute(
 			'taq',
-			'install @taqueria/plugin-taquito@0.26.28-rc',
+			'install @taqueria/plugin-taquito@v0.27.17-rc',
 			'./test-project',
 		);
 		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));
@@ -409,7 +388,7 @@ describe('Contextual Help E2E Testing for Taqueria CLI', () => {
 
 		const { stdout: stdout1 } = await execute(
 			'taq',
-			'install @taqueria/plugin-taquito@0.26.28-rc',
+			'install @taqueria/plugin-taquito@v0.27.17-rc',
 			'./test-project',
 		);
 		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));

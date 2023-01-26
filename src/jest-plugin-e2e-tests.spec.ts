@@ -11,7 +11,7 @@ describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, cleanup, exists, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('npm', 'install --save-dev ts-jest', './test-project');
 		expect(stdout1).toEqual(expect.arrayContaining([expect.stringContaining('packages')]));
@@ -31,7 +31,7 @@ describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, cleanup, exists, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout3 } = await execute('taq', 'test -i automated-tests-initialization', './test-project');
@@ -46,7 +46,7 @@ describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, cleanup, readFile, exists, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('npm', 'install --save-dev ts-jest', './test-project');
 		expect(stdout1).toEqual(expect.arrayContaining([expect.stringContaining('packages')]));
@@ -68,7 +68,7 @@ describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, cleanup, writeFile, exists, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('npm', 'install --save-dev ts-jest', './test-project');
 		expect(stdout1).toEqual(expect.arrayContaining([expect.stringContaining('packages')]));
@@ -91,7 +91,7 @@ describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, cleanup, writeFile, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('npm', 'install --save-dev ts-jest', './test-project');
 		expect(stdout1).toEqual(expect.arrayContaining([expect.stringContaining('packages')]));
@@ -117,7 +117,7 @@ describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, cleanup, writeFile, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('npm', 'install --save-dev ts-jest', './test-project');
 		expect(stdout1).toEqual(expect.arrayContaining([expect.stringContaining('packages')]));
@@ -143,7 +143,7 @@ describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, cleanup, writeFile, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('npm', 'install --save-dev ts-jest', './test-project');
 		expect(stdout1).toEqual(expect.arrayContaining([expect.stringContaining('packages')]));
@@ -169,7 +169,7 @@ describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('npm', 'install --save-dev ts-jest', './test-project');
 		expect(stdout1).toEqual(expect.arrayContaining([expect.stringContaining('packages')]));
@@ -186,7 +186,7 @@ describe('Jest Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, cleanup, writeFile, readFile, exists, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
-		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@0.26.28-rc', './test-project');
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-jest@v0.27.17-rc', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('npm', 'install --save-dev ts-jest', './test-project');
 		expect(stdout1).toEqual(expect.arrayContaining([expect.stringContaining('packages')]));

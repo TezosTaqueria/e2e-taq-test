@@ -18,7 +18,7 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 		const { stdout: stdout1 } = await execute(
 			'taq',
 
-			'install @taqueria/plugin-taquito@0.26.28-rc',
+			'install @taqueria/plugin-taquito@v0.27.17-rc',
 			'./test-project',
 		);
 		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));
@@ -53,7 +53,7 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 
 		const { stdout: stdout1 } = await execute(
 			'taq',
-			'install @taqueria/plugin-taquito@0.26.28-rc',
+			'install @taqueria/plugin-taquito@v0.27.17-rc',
 			'./test-project',
 		);
 		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));
@@ -74,7 +74,7 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 
 		const { stdout: stdout1 } = await execute(
 			'taq',
-			'install @taqueria/plugin-taquito@0.26.28-rc',
+			'install @taqueria/plugin-taquito@v0.27.17-rc',
 			'./test-project',
 		);
 		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));
@@ -94,7 +94,7 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 
 		const { stdout: stdout1 } = await execute(
 			'taq',
-			'install @taqueria/plugin-taquito@0.26.28-rc',
+			'install @taqueria/plugin-taquito@v0.27.17-rc',
 			'./test-project',
 		);
 		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));
@@ -118,7 +118,7 @@ describe('Taquito Plugin E2E testing for Taqueria CLI', () => {
 
 		const { stdout: stdout1 } = await execute(
 			'taq',
-			'install @taqueria/plugin-taquito@0.26.28-rc',
+			'install @taqueria/plugin-taquito@v0.27.17-rc',
 			'./test-project',
 		);
 		expect(stdout1).toEqual(expect.arrayContaining(['Plugin installed successfully']));

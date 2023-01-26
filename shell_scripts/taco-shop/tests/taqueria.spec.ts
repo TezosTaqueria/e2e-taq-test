@@ -1,3 +1,4 @@
+export {}
 const { exec } = require('node:child_process');
 const util = require('node:util');
 const execPromise = util.promisify(exec);
@@ -26,15 +27,6 @@ describe('E2E Testing for taqueria action', () => {
 		const contractOriginate = await execPromise(`taq originate ${contractName}`, { cwd: `./` });
         expect(contractOriginate.stdout).toContain(contractName);
 		expect(contractOriginate.stdout).toContain('local');
-
-        const contractHash = contractOriginate.stdout.split('\n')
-        .find(line => line.includes(contractName))
-        ?.split('│')[2]
-        .trim()
-
-        // TODO: Talk with Alex about this one
-        // const sandboxContractContents = await execPromise(`curl http://localhost:20000/chains/main/blocks/head/context/contracts/${contractHash}`)
-        // expect(sandboxContractContents.stdout).toContain('"storage":{"int":"42"}')
 
 	});
 });
