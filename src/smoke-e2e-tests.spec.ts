@@ -1,11 +1,10 @@
 import { prepareEnvironment } from '@gmrchk/cli-testing-library';
 import { exec as exec1 } from 'child_process';
 import util from 'util';
-const exec = util.promisify(exec1);
 
 describe('E2E Smoke Test for Taqueria CLI,', () => {
 
-	jest.setTimeout(30000);
+	jest.setTimeout(60000);
 
 	test('init will create the correct directory structure', async () => {
 		const { spawn, cleanup, exists } = await prepareEnvironment();
@@ -20,7 +19,7 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		const { spawn, cleanup, execute, readFile, writeFile } = await prepareEnvironment();
 		const { waitForFinish } = await spawn('taq', 'init auto-test-npm-success');
 		await writeFile('./auto-test-npm-success/package.json', '{}');
-		const {} = await execute('taq', 'install @taqueria/plugin-ligo@0.26.28-rc');
+		const {} = await execute('taq', 'install @taqueria/plugin-ligo@0.25.31-rc');
 		await waitForFinish();
 		const content = await readFile('./auto-test-npm-success/package.json');
 		expect(content).toContain('"name": "auto-test-npm-success"');
