@@ -24,7 +24,11 @@ taq --version
 ```
 In VsCode, do a full product search and replace of the version number, changing for example,
 ```
+<<<<<<< HEAD
 install @taqueria/plugin-contract-types
+=======
+install @taqueria/plugin-contract-types@v0.27.17-rc
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 ```
 to
 ```

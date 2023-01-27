@@ -13,7 +13,11 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, spawn, cleanup, ls, writeFile, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-metadata', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-metadata@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const mligo_file = await (await exec(`cat src/test-data/hello-tacos.mligo`)).stdout;
@@ -71,7 +75,11 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, spawn, cleanup, ls, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-metadata', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-metadata@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const mligo_file = await (await exec(`cat src/test-data/hello-tacos.mligo`)).stdout;
@@ -89,7 +97,11 @@ describe('Metadata Plugin E2E Testing for the Taqueria CLI', () => {
 		const { execute, spawn, cleanup, ls, writeFile, readFile } = await prepareEnvironment();
 		const { stdout } = await execute('taq', 'init test-project');
 		expect(stdout).toContain("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-metadata', './test-project');
+=======
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-metadata@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const mligo_file = await (await exec(`cat src/test-data/hello-tacos.mligo`)).stdout;

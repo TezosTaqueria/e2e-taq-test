@@ -13,7 +13,11 @@ describe('SmartPy Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile, exists } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-smartpy', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-smartpy@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const py_file = await (await exec(`cat src/test-data/hello-tacos.py`)).stdout;
@@ -33,7 +37,11 @@ describe('SmartPy Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-smartpy', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-smartpy@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', 'compile no_such_file.py', './test-project');
@@ -46,7 +54,11 @@ describe('SmartPy Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-smartpy', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-smartpy@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const py_file = await (await exec(`cat src/test-data/hello-tacos.py`)).stdout;
@@ -62,7 +74,11 @@ describe('SmartPy Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-smartpy', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-smartpy@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const py_file = await (await exec(`cat src/test-data/hello-tacos-failed-tests.py`)).stdout;

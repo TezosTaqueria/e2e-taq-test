@@ -19,7 +19,11 @@ describe('E2E Smoke Test for Taqueria CLI,', () => {
 		const { spawn, cleanup, execute, readFile, writeFile } = await prepareEnvironment();
 		const { waitForFinish } = await spawn('taq', 'init auto-test-npm-success');
 		await writeFile('./auto-test-npm-success/package.json', '{}');
+<<<<<<< HEAD
 		const {} = await execute('taq', 'install @taqueria/plugin-ligo');
+=======
+		const {} = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		await waitForFinish();
 		const content = await readFile('./auto-test-npm-success/package.json');
 		expect(content).toContain('"name": "auto-test-npm-success"');

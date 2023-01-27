@@ -13,7 +13,11 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout).toContain('Plugin installed successfully');
 
 		const { stdout: stdout2 } = await execute('taq', '--help');
@@ -28,7 +32,11 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, spawn, cleanup, ls } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout, stderr } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
+=======
+		const { stdout, stderr } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		console.log(stderr)
 		expect(stdout).toContain('Plugin installed successfully');
 
@@ -44,14 +52,22 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, exists, writeFile, ls } = await prepareEnvironment();
 		const {} = await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
+<<<<<<< HEAD
 		const {} = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+=======
+		const {} = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		await exists('./test-project/node_modules/@taqueria/plugin-ligo/index.js');
 
 		const increment_jsligo_file = ((await exec('cat src/test-data/increment.jsligo')).stdout);
 		await writeFile('./test-project/contracts/increment.jsligo', increment_jsligo_file);
 		await exists('./contracts/increment.jsligo');
 
+<<<<<<< HEAD
 		const {} = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
+=======
+		const {} = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		await exists('./test-project/node_modules/@taqueria/plugin-contract-types/index.js');
 
 		const { } = await execute('taq', 'compile increment.jsligo', './test-project');
@@ -77,9 +93,15 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile, ls } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
+		expect(stdout).toContain('Plugin installed successfully');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const jsligo_file = await (await exec(`cat src/test-data/increment.jsligo`)).stdout;
@@ -110,9 +132,15 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile, ls } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
+		expect(stdout).toContain('Plugin installed successfully');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const jsligo_file = await (await exec(`cat src/test-data/increment.jsligo`)).stdout;
@@ -143,9 +171,15 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile, ls } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
+		expect(stdout).toContain('Plugin installed successfully');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const jsligo_file = await (await exec(`cat src/test-data/increment.jsligo`)).stdout;
@@ -176,9 +210,15 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
+		expect(stdout).toContain('Plugin installed successfully');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const tz_file = await (await exec(`cat src/test-data/contracts/example-contract-1.tz`))
@@ -199,9 +239,15 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
+		expect(stdout).toContain('Plugin installed successfully');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const tz_file = await (await exec(`cat src/test-data/contracts/example-contract-2.tz`))
@@ -222,9 +268,15 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
+		expect(stdout).toContain('Plugin installed successfully');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const tz_file =
@@ -248,9 +300,15 @@ describe('Contract Types Plugin E2E Testing for Taqueria CLI', () => {
 		const { execute, cleanup, spawn, writeFile, readFile } = await prepareEnvironment();
 		const { waitForText } = await spawn('taq', 'init test-project');
 		await waitForText("Project taq'ified!");
+<<<<<<< HEAD
 		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types', './test-project');
 		expect(stdout).toContain('Plugin installed successfully');
 		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo', './test-project');
+=======
+		const { stdout } = await execute('taq', 'install @taqueria/plugin-contract-types@v0.27.17-rc', './test-project');
+		expect(stdout).toContain('Plugin installed successfully');
+		const { stdout: stdout1 } = await execute('taq', 'install @taqueria/plugin-ligo@v0.27.17-rc', './test-project');
+>>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
 		expect(stdout1).toContain('Plugin installed successfully');
 
 		const tz_file = await (await exec(`cat src/test-data/contracts/example-lambda.tz`))
