@@ -14,11 +14,8 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		const config_file = await (await exec('cat src/test-data/config-flextesa-test-sandbox.json')).stdout;
 		await writeFile('./test-project/.taq/config.json', config_file);
 
-<<<<<<< HEAD
 		await execute('taq', 'install @taqueria/plugin-flextesa', './test-project');
-=======
-		await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
->>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
+
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
 		const { stdout: stdout2, stderr } = await execute('taq', 'start sandbox test', './test-project');
@@ -39,11 +36,8 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 
-<<<<<<< HEAD
 		await execute('taq', 'install @taqueria/plugin-flextesa', './test-project');
-=======
-		await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
->>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
+
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
 		const { stdout: stdout2 } = await execute(
@@ -61,11 +55,8 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 
-<<<<<<< HEAD
 		await execute('taq', 'install @taqueria/plugin-flextesa', './test-project');
-=======
-		await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
->>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
+
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
 		const { stdout: stdout2 } = await execute(
@@ -83,11 +74,8 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 
-<<<<<<< HEAD
 		await execute('taq', 'install @taqueria/plugin-flextesa', './test-project');
-=======
-		await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
->>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
+
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
 		const { stderr } = await execute('taq', 'start sandbox no_such_sandbox', './test-project');
@@ -101,11 +89,8 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 
-<<<<<<< HEAD
 		await execute('taq', 'install @taqueria/plugin-flextesa', './test-project');
-=======
-		await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
->>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
+
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
 		const { stdout: stdout2 } = await execute('taq', 'show protocols', './test-project');
@@ -119,11 +104,8 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 
-<<<<<<< HEAD
 		await execute('taq', 'install @taqueria/plugin-flextesa', './test-project');
-=======
-		await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
->>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
+
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
 		const { stdout: stdout2 } = await execute('taq', 'stop sandbox local', './test-project');
@@ -138,11 +120,8 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 
-<<<<<<< HEAD
 		await execute('taq', 'install @taqueria/plugin-flextesa', './test-project');
-=======
-		await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
->>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
+
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
 		const { stderr } = await execute('taq', 'list accounts local', './test-project');
@@ -156,11 +135,8 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 
-<<<<<<< HEAD
 		await execute('taq', 'install @taqueria/plugin-flextesa', './test-project');
-=======
-		await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
->>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
+
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
 		await execute('taq', 'start sandbox local', './test-project');
@@ -176,11 +152,8 @@ describe('Flextesa Plugin E2E Testing for Taqueria CLI', () => {
 		await execute('taq', 'init test-project');
 		await exists('./test-project/.taq/config.json');
 		
-<<<<<<< HEAD
 		await execute('taq', 'install @taqueria/plugin-flextesa', './test-project');
-=======
-		await execute('taq', 'install @taqueria/plugin-flextesa@v0.27.17-rc', './test-project');
->>>>>>> 3212583e4535041eb2cb820dd3c4767cec0a6670
+
 		await exists('./test-project/node_modules/@taqueria/plugin-flextesa/index.js');
 
 		await execute('taq', 'start sandbox local', './test-project');
